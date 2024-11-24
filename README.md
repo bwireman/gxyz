@@ -8,3 +8,5 @@ A small library of helper functions, that works as a companion of [gleam_stdlib]
 ```sh
 gleam add gxyz@1
 ```
+
+Further documentation can be found at <https://hexdocs.pm/gxyz>
