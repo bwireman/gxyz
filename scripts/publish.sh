@@ -16,8 +16,6 @@ if [ "$BRANCH" != "main" ]; then
     exit 1
 fi
 
-gleam format
-./scripts/update.sh
 ./scripts/test.sh
 
 if [ -n "$(git status --porcelain)" ]; then
