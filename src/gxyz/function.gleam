@@ -34,3 +34,24 @@ pub fn freeze5(
 ) -> fn() -> f {
   fn() { fun(arg1, arg2, arg3, arg4, arg5) }
 }
+
+pub fn iff(condition: Bool, f: fn() -> a, default: a) -> a {
+  case condition {
+    True -> f()
+    _ -> default
+  }
+}
+
+pub fn iff_nil(condition: Bool, f: fn() -> Nil) -> Nil {
+  iff(condition, f, Nil)
+}
+
+pub fn ignore_result(condition: Bool, f: fn() -> Result(a, b)) -> Nil {
+  case condition {
+    True -> {
+      let _ = f()
+      Nil
+    }
+    _ -> Nil
+  }
+}
