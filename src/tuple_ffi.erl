@@ -1,12 +1,67 @@
 -module(tuple_ffi).
 
 -export([
-    at/2, map/3
+    map2_0/2,
+    map2_1/2,
+    map3_0/2,
+    map3_1/2,
+    map3_2/2,
+    map4_0/2,
+    map4_1/2,
+    map4_2/2,
+    map4_3/2,
+    map5_0/2,
+    map5_1/2,
+    map5_2/2,
+    map5_3/2,
+    map5_4/2,
+    at/2
 ]).
 
 at(Tuple, Index) ->
     element(Index + 1, Tuple).
 
+map2_0(Tuple, FN) ->
+    map(Tuple, 0, FN).
+
+map2_1(Tuple, FN) ->
+    map(Tuple, 1, FN).
+
+map3_0(Tuple, FN) ->
+    map(Tuple, 0, FN).
+
+map3_1(Tuple, FN) ->
+    map(Tuple, 1, FN).
+
+map3_2(Tuple, FN) ->
+    map(Tuple, 2, FN).
+
+map4_0(Tuple, FN) ->
+    map(Tuple, 0, FN).
+
+map4_1(Tuple, FN) ->
+    map(Tuple, 1, FN).
+
+map4_2(Tuple, FN) ->
+    map(Tuple, 2, FN).
+
+map4_3(Tuple, FN) ->
+    map(Tuple, 3, FN).
+
+map5_0(Tuple, FN) ->
+    map(Tuple, 0, FN).
+
+map5_1(Tuple, FN) ->
+    map(Tuple, 1, FN).
+
+map5_2(Tuple, FN) ->
+    map(Tuple, 2, FN).
+
+map5_3(Tuple, FN) ->
+    map(Tuple, 3, FN).
+
+map5_4(Tuple, FN) ->
+    map(Tuple, 4, FN).
 
 
 

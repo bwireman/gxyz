@@ -2,9 +2,25 @@
 set -e
 cd "$(dirname "$0")/.."
 
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+deno run --allow-all ./gen/main.js
+deno fmt
+gleam fix
 gleam check
 gleam update
 gleam build
-gleam fix
 gleam format
-gleam test
+
+echo -e "${GREEN}==> erlang${NC}"
+gleam test --target erlang
+
+echo -e "${GREEN}==> nodejs${NC}"
+gleam test --target javascript --runtime nodejs
+
+echo -e "${GREEN}==> deno${NC}"
+gleam test --target javascript --runtime deno
+
+echo -e "${GREEN}==> bun${NC}"
+gleam test --target javascript --runtime bun

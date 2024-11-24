@@ -16,9 +16,76 @@ pub fn at4(tuple: #(a, b, c, d), index: Int) -> e
 @external(javascript, "../tuple_ffi.mjs", "at")
 pub fn at5(tuple: #(a, b, c, d, e), index: Int) -> f
 
-// @external(erlang, "tuple_ffi", "map")
-// @external(javascript, "../tuple_ffi.mjs", "map")
-// pub fn map5(tuple: #(a, b, c, d, e), index: Int) -> f
+@external(erlang, "tuple_ffi", "map2_0")
+@external(javascript, "../tuple_ffi.mjs", "map2_0")
+pub fn map2_0(tuple: #(a, b), fun: fn(a) -> mapped) -> #(mapped, b)
+
+@external(erlang, "tuple_ffi", "map2_1")
+@external(javascript, "../tuple_ffi.mjs", "map2_1")
+pub fn map2_1(tuple: #(a, b), fun: fn(b) -> mapped) -> #(a, mapped)
+
+@external(erlang, "tuple_ffi", "map3_0")
+@external(javascript, "../tuple_ffi.mjs", "map3_0")
+pub fn map3_0(tuple: #(a, b, c), fun: fn(a) -> mapped) -> #(mapped, b, c)
+
+@external(erlang, "tuple_ffi", "map3_1")
+@external(javascript, "../tuple_ffi.mjs", "map3_1")
+pub fn map3_1(tuple: #(a, b, c), fun: fn(b) -> mapped) -> #(a, mapped, c)
+
+@external(erlang, "tuple_ffi", "map3_2")
+@external(javascript, "../tuple_ffi.mjs", "map3_2")
+pub fn map3_2(tuple: #(a, b, c), fun: fn(c) -> mapped) -> #(a, b, mapped)
+
+@external(erlang, "tuple_ffi", "map4_0")
+@external(javascript, "../tuple_ffi.mjs", "map4_0")
+pub fn map4_0(tuple: #(a, b, c, d), fun: fn(a) -> mapped) -> #(mapped, b, c, d)
+
+@external(erlang, "tuple_ffi", "map4_1")
+@external(javascript, "../tuple_ffi.mjs", "map4_1")
+pub fn map4_1(tuple: #(a, b, c, d), fun: fn(b) -> mapped) -> #(a, mapped, c, d)
+
+@external(erlang, "tuple_ffi", "map4_2")
+@external(javascript, "../tuple_ffi.mjs", "map4_2")
+pub fn map4_2(tuple: #(a, b, c, d), fun: fn(c) -> mapped) -> #(a, b, mapped, d)
+
+@external(erlang, "tuple_ffi", "map4_3")
+@external(javascript, "../tuple_ffi.mjs", "map4_3")
+pub fn map4_3(tuple: #(a, b, c, d), fun: fn(d) -> mapped) -> #(a, b, c, mapped)
+
+@external(erlang, "tuple_ffi", "map5_0")
+@external(javascript, "../tuple_ffi.mjs", "map5_0")
+pub fn map5_0(
+  tuple: #(a, b, c, d, e),
+  fun: fn(a) -> mapped,
+) -> #(mapped, b, c, d, e)
+
+@external(erlang, "tuple_ffi", "map5_1")
+@external(javascript, "../tuple_ffi.mjs", "map5_1")
+pub fn map5_1(
+  tuple: #(a, b, c, d, e),
+  fun: fn(b) -> mapped,
+) -> #(a, mapped, c, d, e)
+
+@external(erlang, "tuple_ffi", "map5_2")
+@external(javascript, "../tuple_ffi.mjs", "map5_2")
+pub fn map5_2(
+  tuple: #(a, b, c, d, e),
+  fun: fn(c) -> mapped,
+) -> #(a, b, mapped, d, e)
+
+@external(erlang, "tuple_ffi", "map5_3")
+@external(javascript, "../tuple_ffi.mjs", "map5_3")
+pub fn map5_3(
+  tuple: #(a, b, c, d, e),
+  fun: fn(d) -> mapped,
+) -> #(a, b, c, mapped, e)
+
+@external(erlang, "tuple_ffi", "map5_4")
+@external(javascript, "../tuple_ffi.mjs", "map5_4")
+pub fn map5_4(
+  tuple: #(a, b, c, d, e),
+  fun: fn(e) -> mapped,
+) -> #(a, b, c, d, mapped)
 
 /// returns the value at index from the a tuple, using a dynamic.Decode function
 pub fn at_dynamic(

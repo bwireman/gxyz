@@ -91,3 +91,47 @@ pub fn at5_test() {
   gxyz_tuple.at5(x, 4)
   |> should.equal([1, 2, 3])
 }
+
+pub fn map_test() {
+  gxyz_tuple.map2_0(#(1, 2), fn(x) { x * -1 })
+  |> should.equal(#(-1, 2))
+
+  gxyz_tuple.map2_1(#(1, 2), fn(x) { x * -1 })
+  |> should.equal(#(1, -2))
+
+  gxyz_tuple.map3_0(#(1, 2, 3), fn(x) { x * -1 })
+  |> should.equal(#(-1, 2, 3))
+
+  gxyz_tuple.map3_1(#(1, 2, 3), fn(x) { x * -1 })
+  |> should.equal(#(1, -2, 3))
+
+  gxyz_tuple.map3_2(#(1, 2, 3), fn(x) { x * -1 })
+  |> should.equal(#(1, 2, -3))
+
+  gxyz_tuple.map4_0(#(1, 2, 3, 4), fn(x) { x * -1 })
+  |> should.equal(#(-1, 2, 3, 4))
+
+  gxyz_tuple.map4_1(#(1, 2, 3, 4), fn(x) { x * -1 })
+  |> should.equal(#(1, -2, 3, 4))
+
+  gxyz_tuple.map4_2(#(1, 2, 3, 4), fn(x) { x * -1 })
+  |> should.equal(#(1, 2, -3, 4))
+
+  gxyz_tuple.map4_3(#(1, 2, 3, 4), fn(x) { x * -1 })
+  |> should.equal(#(1, 2, 3, -4))
+
+  gxyz_tuple.map5_0(#(1, 2, 3, 4, 5), fn(x) { x * -1 })
+  |> should.equal(#(-1, 2, 3, 4, 5))
+
+  gxyz_tuple.map5_1(#(1, 2, 3, 4, 5), fn(x) { x * -1 })
+  |> should.equal(#(1, -2, 3, 4, 5))
+
+  gxyz_tuple.map5_2(#(1, 2, 3, 4, 5), fn(x) { x * -1 })
+  |> should.equal(#(1, 2, -3, 4, 5))
+
+  gxyz_tuple.map5_3(#(1, 2, 3, 4, 5), fn(x) { x * -1 })
+  |> should.equal(#(1, 2, 3, -4, 5))
+
+  gxyz_tuple.map5_4(#(1, 2, 3, 4, 5), fn(x) { x * -1 })
+  |> should.equal(#(1, 2, 3, 4, -5))
+}
