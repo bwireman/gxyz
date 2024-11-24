@@ -11,14 +11,11 @@ pub fn at_dynamic(
 }
 
 {{#mappers}}
-@external(erlang, "tuple_ffi", "at")
-@external(javascript, "../tuple_ffi.mjs", "at")
+@external(erlang, "tuple_ffi", "at{{count}}_{{index}}")
+@external(javascript, "../tuple_ffi.mjs", "at{{count}}_{{index}}")
 /// returns the {{index_name}} element of a tuple of length {{count}}
-pub fn at{{count}}_{{index}}(tuple: {{tuple}}, index: Int) -> {{type}}
+pub fn at{{count}}_{{index}}(tuple: {{tuple}}) -> {{type}}
 
-{{/mappers}}
-
-{{#mappers}}
 @external(erlang, "tuple_ffi", "map{{count}}_{{index}}")
 @external(javascript, "../tuple_ffi.mjs", "map{{count}}_{{index}}")
 /// applies the function to the {{index_name}} element of a tuple of length {{count}}

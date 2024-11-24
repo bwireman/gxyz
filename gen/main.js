@@ -11,12 +11,21 @@ async function render(src, dst, data) {
 if (import.meta.main) {
   const mappers = [];
   const tuple = ["a"];
+  const values = [1];
 
   for (let count = 2; count < MAX_TUPLE_SIZE + 1; count++) {
     tuple.push(alphabet[count - 1]);
+    values.push(count);
     for (let index = 0; index < count; index++) {
       const new_tuple = structuredClone(tuple);
       new_tuple[index] = "mapped";
+
+      const new_erl_tuple = structuredClone(tuple);
+      new_erl_tuple[index] = `FN(${tuple[index]})`;
+
+      const mapped_values = structuredClone(values);
+      mapped_values[index] = mapped_values[index] * -1;
+
       let suffix = "th";
       if (index == 0) {
         suffix = "st";
@@ -32,6 +41,14 @@ if (import.meta.main) {
         type: tuple[index],
         tuple: `#(${tuple.join(", ")})`,
         new_tuple: `#(${new_tuple.join(", ")})`,
+        // erlang
+        erl_tuple: `{${tuple.join(", ")}}`.toUpperCase(),
+        new_erl_tuple: `{${new_erl_tuple.join(", ")}}`.toUpperCase(),
+        not_last: !(count == MAX_TUPLE_SIZE && index == count - 1),
+        values: `#(${values.join(", ")})`,
+        value: index + 1,
+        mapped_values: `#(${mapped_values.join(", ")})`,
+
         index_name: `${index + 1}${suffix}`,
       });
     }
@@ -46,6 +63,10 @@ if (import.meta.main) {
     { mappers: mappers },
   );
   render("./gen/templates/tuple_ffi.mjs.tpl", "./src/tuple_ffi.mjs", {
+    mappers: mappers,
+  });
+
+  render("./gen/templates/tuple_test.gleam.tpl", "./test/tuple_test.gleam", {
     mappers: mappers,
   });
 }
