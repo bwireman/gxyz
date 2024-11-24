@@ -8,6 +8,18 @@ async function render(src, dst, data) {
   Deno.writeTextFile(dst, output);
 }
 
+function get_suffix(index) {
+  let suffix = "th";
+  if (index == 0) {
+    suffix = "st";
+  } else if (index == 1) {
+    suffix = "nd";
+  } else if (index == 2) {
+    suffix = "rd";
+  }
+  return suffix;
+}
+
 if (import.meta.main) {
   const mappers = [];
   const tuple = ["a"];
@@ -26,15 +38,6 @@ if (import.meta.main) {
       const mapped_values = structuredClone(values);
       mapped_values[index] = mapped_values[index] * -1;
 
-      let suffix = "th";
-      if (index == 0) {
-        suffix = "st";
-      } else if (index == 1) {
-        suffix = "nd";
-      } else if (index == 2) {
-        suffix = "rd";
-      }
-
       mappers.push({
         count: count,
         index: index,
@@ -49,7 +52,7 @@ if (import.meta.main) {
         value: index + 1,
         mapped_values: `#(${mapped_values.join(", ")})`,
 
-        index_name: `${index + 1}${suffix}`,
+        index_name: `${index + 1}${get_suffix(index)}`,
       });
     }
   }
