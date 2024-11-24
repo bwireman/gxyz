@@ -1,7 +1,7 @@
 name = "gxyz"
 version = "0.1.0"
 
-description = " A small library of helper functions, that works as a companion of gleam_stdlib"
+description = "🛒 A small library of helper functions, that works as a companion of gleam_stdlib"
 licences = ["MIT"]
 repository = { type = "github", user = "bwireman", repo = "gxyz" }
 
