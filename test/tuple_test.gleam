@@ -37,58 +37,58 @@ pub fn at_dynamic_test() {
 pub fn at2_test() {
   let x = #(1, "1")
 
-  gxyz_tuple.at2(x, 0)
+  gxyz_tuple.at2_0(x, 0)
   |> should.equal(1)
 
-  gxyz_tuple.at2(x, 1)
+  gxyz_tuple.at2_1(x, 1)
   |> should.equal("1")
 }
 
 pub fn at3_test() {
   let x = #(1, "1", True)
 
-  gxyz_tuple.at3(x, 0)
+  gxyz_tuple.at3_0(x, 0)
   |> should.equal(1)
 
-  gxyz_tuple.at3(x, 1)
+  gxyz_tuple.at3_1(x, 1)
   |> should.equal("1")
 
-  gxyz_tuple.at3(x, 2)
+  gxyz_tuple.at3_2(x, 2)
   |> should.be_true()
 }
 
 pub fn at4_test() {
   let x = #(1, "1", True, Nil)
 
-  gxyz_tuple.at4(x, 0)
+  gxyz_tuple.at4_0(x, 0)
   |> should.equal(1)
 
-  gxyz_tuple.at4(x, 1)
+  gxyz_tuple.at4_1(x, 1)
   |> should.equal("1")
 
-  gxyz_tuple.at4(x, 2)
+  gxyz_tuple.at4_2(x, 2)
   |> should.be_true()
 
-  gxyz_tuple.at4(x, 3)
+  gxyz_tuple.at4_3(x, 3)
   |> should.equal(Nil)
 }
 
 pub fn at5_test() {
   let x = #(1, "1", True, Nil, [1, 2, 3])
 
-  gxyz_tuple.at5(x, 0)
+  gxyz_tuple.at5_0(x, 0)
   |> should.equal(1)
 
-  gxyz_tuple.at5(x, 1)
+  gxyz_tuple.at5_1(x, 1)
   |> should.equal("1")
 
-  gxyz_tuple.at5(x, 2)
+  gxyz_tuple.at5_2(x, 2)
   |> should.be_true()
 
-  gxyz_tuple.at5(x, 3)
+  gxyz_tuple.at5_3(x, 3)
   |> should.equal(Nil)
 
-  gxyz_tuple.at5(x, 4)
+  gxyz_tuple.at5_4(x, 4)
   |> should.equal([1, 2, 3])
 }
 

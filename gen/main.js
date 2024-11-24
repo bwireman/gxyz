@@ -17,6 +17,14 @@ if (import.meta.main) {
     for (let index = 0; index < count; index++) {
       const new_tuple = structuredClone(tuple);
       new_tuple[index] = "mapped";
+      let suffix = "th";
+      if (index == 0) {
+        suffix = "st";
+      } else if (index == 1) {
+        suffix = "nd";
+      } else if (index == 2) {
+        suffix = "rd";
+      }
 
       mappers.push({
         count: count,
@@ -24,6 +32,7 @@ if (import.meta.main) {
         type: tuple[index],
         tuple: `#(${tuple.join(", ")})`,
         new_tuple: `#(${new_tuple.join(", ")})`,
+        index_name: `${index + 1}${suffix}`,
       });
     }
   }
