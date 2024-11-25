@@ -2,20 +2,20 @@
 -module(tuple_ffi).
 
 -export([
-    <#mappers>
-    map<count>_<index>/2,
-    at<count>_<index>/1<#not_last>,</not_last>
-    </mappers>
+    <#indexers>
+    map__<zero_indexed>/2,
+    at__<zero_indexed>/1<#not_last>,</not_last>
+    </indexers>
 ]).
 
-<#mappers>
-at<count>_<index>(Tuple) ->
-    element(<value>, Tuple).
+<#indexers>
+at__<zero_indexed>(Tuple) ->
+    element(<one_indexed>, Tuple).
 
-map<count>_<index>(Tuple, FN) ->
-    map(Tuple, <index>, FN).
+map__<zero_indexed>(Tuple, FN) ->
+    map(Tuple, <zero_indexed>, FN).
 
-</mappers>
+</indexers>
 
 map(Tuple, Index, FN) ->
     case {Tuple, Index} of

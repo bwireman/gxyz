@@ -81,11 +81,26 @@ function get_mappers_and_applys() {
   return [mappers, applys];
 }
 
+function get_indexers() {
+  const indexers = [];
+  for (let count = 0; count < MAX_TUPLE_SIZE; count++) {
+    indexers.push({
+      zero_indexed: count,
+      one_indexed: count + 1,
+      not_last: count < MAX_TUPLE_SIZE - 1,
+    });
+  }
+
+  return indexers;
+}
+
 if (import.meta.main) {
   const [mappers, applys] = get_mappers_and_applys();
+  const indexers = get_indexers();
 
   render("./gen/templates/tuple_ffi.erl.tpl", "./src/tuple_ffi.erl", {
     mappers,
+    indexers,
     applys,
   });
   render(
@@ -94,7 +109,7 @@ if (import.meta.main) {
     { mappers, applys },
   );
   render("./gen/templates/tuple_ffi.mjs.tpl", "./src/tuple_ffi.mjs", {
-    mappers,
+    indexers,
     applys,
   });
 

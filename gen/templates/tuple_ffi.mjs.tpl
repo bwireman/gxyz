@@ -1,18 +1,14 @@
 
-{{#mappers}}
-export function at{{count}}_{{index}}(tuple) {
-    return at(tuple, {{index}})
+{{#indexers}}
+export function at__{{zero_indexed}}(tuple) {
+    return tuple[{{zero_indexed}}]
 }
 
-export function map{{count}}_{{index}}(tuple, fn) {
-    return map(tuple, {{index}}, fn)
+export function map__{{zero_indexed}}(tuple, fn) {
+    return map(tuple, {{zero_indexed}}, fn)
 }
 
-{{/mappers}}
-
-function at(tuple, index) {
-    return tuple[index]
-}
+{{/indexers}}
 
 function map(tuple, index, fn) {
     const new_tuple = structuredClone(tuple);
