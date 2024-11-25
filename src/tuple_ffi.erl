@@ -32,91 +32,89 @@
 ]).
 
 at2_0(Tuple) ->
-    at(Tuple, 0).
+    element(1, Tuple).
 
 map2_0(Tuple, FN) ->
     map(Tuple, 0, FN).
 
 at2_1(Tuple) ->
-    at(Tuple, 1).
+    element(2, Tuple).
 
 map2_1(Tuple, FN) ->
     map(Tuple, 1, FN).
 
 at3_0(Tuple) ->
-    at(Tuple, 0).
+    element(1, Tuple).
 
 map3_0(Tuple, FN) ->
     map(Tuple, 0, FN).
 
 at3_1(Tuple) ->
-    at(Tuple, 1).
+    element(2, Tuple).
 
 map3_1(Tuple, FN) ->
     map(Tuple, 1, FN).
 
 at3_2(Tuple) ->
-    at(Tuple, 2).
+    element(3, Tuple).
 
 map3_2(Tuple, FN) ->
     map(Tuple, 2, FN).
 
 at4_0(Tuple) ->
-    at(Tuple, 0).
+    element(1, Tuple).
 
 map4_0(Tuple, FN) ->
     map(Tuple, 0, FN).
 
 at4_1(Tuple) ->
-    at(Tuple, 1).
+    element(2, Tuple).
 
 map4_1(Tuple, FN) ->
     map(Tuple, 1, FN).
 
 at4_2(Tuple) ->
-    at(Tuple, 2).
+    element(3, Tuple).
 
 map4_2(Tuple, FN) ->
     map(Tuple, 2, FN).
 
 at4_3(Tuple) ->
-    at(Tuple, 3).
+    element(4, Tuple).
 
 map4_3(Tuple, FN) ->
     map(Tuple, 3, FN).
 
 at5_0(Tuple) ->
-    at(Tuple, 0).
+    element(1, Tuple).
 
 map5_0(Tuple, FN) ->
     map(Tuple, 0, FN).
 
 at5_1(Tuple) ->
-    at(Tuple, 1).
+    element(2, Tuple).
 
 map5_1(Tuple, FN) ->
     map(Tuple, 1, FN).
 
 at5_2(Tuple) ->
-    at(Tuple, 2).
+    element(3, Tuple).
 
 map5_2(Tuple, FN) ->
     map(Tuple, 2, FN).
 
 at5_3(Tuple) ->
-    at(Tuple, 3).
+    element(4, Tuple).
 
 map5_3(Tuple, FN) ->
     map(Tuple, 3, FN).
 
 at5_4(Tuple) ->
-    at(Tuple, 4).
+    element(5, Tuple).
 
 map5_4(Tuple, FN) ->
     map(Tuple, 4, FN).
 
-at(Tuple, Index) ->
-    element(Index + 1, Tuple).
 
 map(Tuple, Index, FN) ->
     case {Tuple, Index} of

@@ -164,3 +164,19 @@ pub fn map5_4(
   tuple: #(a, b, c, d, e),
   fun: fn(e) -> mapped,
 ) -> #(a, b, c, d, mapped)
+
+pub fn apply_from2(tuple: #(a, b), fun: fn(a, b) -> c) -> c {
+  fun(at2_0(tuple), at2_1(tuple))
+}
+
+pub fn apply_from3(tuple: #(a, b, c), fun: fn(a, b, c) -> d) -> d {
+  fun(at3_0(tuple), at3_1(tuple), at3_2(tuple))
+}
+
+pub fn apply_from4(tuple: #(a, b, c, d), fun: fn(a, b, c, d) -> e) -> e {
+  fun(at4_0(tuple), at4_1(tuple), at4_2(tuple), at4_3(tuple))
+}
+
+pub fn apply_from5(tuple: #(a, b, c, d, e), fun: fn(a, b, c, d, e) -> f) -> f {
+  fun(at5_0(tuple), at5_1(tuple), at5_2(tuple), at5_3(tuple), at5_4(tuple))
+}

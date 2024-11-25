@@ -22,3 +22,14 @@ pub fn at{{count}}_{{index}}(tuple: {{tuple}}) -> {{type}}
 pub fn map{{count}}_{{index}}(tuple: {{tuple}}, fun: fn({{type}}) -> mapped) -> {{new_tuple}}
 
 {{/mappers}}
+
+{{#applys}}
+pub fn apply_from{{count}}(tuple: {{tuple}}, fun: fn({{args}}) -> {{type}}) -> {{type}} {
+  fun(
+    {{#ats}}
+      at{{count}}_{{index}}(tuple){{#not_last}},{{/not_last}}
+    {{/ats}}
+  )
+}
+
+{{/applys}}

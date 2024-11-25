@@ -36,7 +36,6 @@ pub fn at_dynamic_test() {
   |> should.equal(1)
 }
 
-
 {{#mappers}}
 pub fn at{{count}}_{{index}}_test() {
   {{values}}
@@ -52,3 +51,14 @@ pub fn map{{count}}_{{index}}_test() {
 
 {{/mappers}}
 
+{{#applys}}
+pub fn apply_from{{count}}_test() {
+  let fun = fn({{args}}) {
+    {{math}}
+  }
+  
+  {{values}}
+  |> gxyz_tuple.apply_from{{count}}(fun)
+  |> should.equal({{sum}})
+}
+{{/applys}}

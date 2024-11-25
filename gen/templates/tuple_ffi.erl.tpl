@@ -10,14 +10,12 @@
 
 <#mappers>
 at<count>_<index>(Tuple) ->
-    at(Tuple, <index>).
+    element(<value>, Tuple).
 
 map<count>_<index>(Tuple, FN) ->
     map(Tuple, <index>, FN).
 
 </mappers>
-at(Tuple, Index) ->
-    element(Index + 1, Tuple).
 
 map(Tuple, Index, FN) ->
     case {Tuple, Index} of

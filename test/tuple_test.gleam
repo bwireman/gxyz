@@ -205,3 +205,35 @@ pub fn map5_4_test() {
   |> gxyz_tuple.map5_4(invert)
   |> should.equal(#(1, 2, 3, 4, -5))
 }
+
+pub fn apply_from2_test() {
+  let fun = fn(a, b) { a + b }
+
+  #(1, 2)
+  |> gxyz_tuple.apply_from2(fun)
+  |> should.equal(3)
+}
+
+pub fn apply_from3_test() {
+  let fun = fn(a, b, c) { a + b + c }
+
+  #(1, 2, 3)
+  |> gxyz_tuple.apply_from3(fun)
+  |> should.equal(6)
+}
+
+pub fn apply_from4_test() {
+  let fun = fn(a, b, c, d) { a + b + c + d }
+
+  #(1, 2, 3, 4)
+  |> gxyz_tuple.apply_from4(fun)
+  |> should.equal(10)
+}
+
+pub fn apply_from5_test() {
+  let fun = fn(a, b, c, d, e) { a + b + c + d + e }
+
+  #(1, 2, 3, 4, 5)
+  |> gxyz_tuple.apply_from5(fun)
+  |> should.equal(15)
+}
