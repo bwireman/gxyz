@@ -20,7 +20,7 @@ function get_suffix(index) {
   return suffix;
 }
 
-if (import.meta.main) {
+function get_mappers_and_applys() {
   const mappers = [];
   const applys = [];
   const tuple = ["a"];
@@ -77,6 +77,12 @@ if (import.meta.main) {
       sum,
     });
   }
+
+  return [mappers, applys];
+}
+
+if (import.meta.main) {
+  const [mappers, applys] = get_mappers_and_applys();
 
   render("./gen/templates/tuple_ffi.erl.tpl", "./src/tuple_ffi.erl", {
     mappers,
