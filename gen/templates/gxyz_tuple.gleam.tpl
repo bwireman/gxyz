@@ -20,10 +20,10 @@ pub fn at{{count}}_{{index}}(tuple: {{tuple}}) -> {{type}}
 @external(javascript, "../tuple_ffi.mjs", "map__{{index}}")
 /// applies the function to the {{index_name}} element of a tuple of length {{count}}
 pub fn map{{count}}_{{index}}(tuple: {{tuple}}, fun: fn({{type}}) -> mapped) -> {{new_tuple}}
-
 {{/mappers}}
 
 {{#applys}}
+/// use the values of a tuple of length {{count}} as the arguments to the supplied function
 pub fn apply_from{{count}}(tuple: {{tuple}}, fun: fn({{args}}) -> {{type}}) -> {{type}} {
   fun(
     {{#ats}}
@@ -31,5 +31,4 @@ pub fn apply_from{{count}}(tuple: {{tuple}}, fun: fn({{args}}) -> {{type}}) -> {
     {{/ats}}
   )
 }
-
 {{/applys}}

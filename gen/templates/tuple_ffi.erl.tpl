@@ -18,8 +18,8 @@ map__<zero_indexed>(Tuple, FN) ->
 </indexers>
 
 map(Tuple, Index, FN) ->
-    case {Tuple, Index} of
+    case {Index, Tuple} of
         <#mappers>
-        {<erl_tuple>, <index>} -> <new_erl_tuple><#not_last>;</not_last>
+        {<index>, <erl_tuple>} -> <new_erl_tuple><#not_last>;</not_last>
         </mappers>
     end.

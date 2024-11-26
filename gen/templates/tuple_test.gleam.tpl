@@ -32,7 +32,7 @@ pub fn at_dynamic_test() {
   |> should.be_error()
 
   gxyz_tuple.at_dynamic(#(1), 0, int)
-|> should.be_ok()
+  |> should.be_ok()
   |> should.equal(1)
 }
 
@@ -48,7 +48,6 @@ pub fn map{{count}}_{{index}}_test() {
   |> gxyz_tuple.map{{count}}_{{index}}(invert)
   |> should.equal({{mapped_values}})
 }
-
 {{/mappers}}
 
 {{#applys}}
