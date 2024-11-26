@@ -24,20 +24,24 @@ function get_mappers_and_applys() {
   const mappers = [];
   const applys = [];
   const tuple = ["a"];
+  const tuple_literal = ["_"];
   const values = [1];
   let sum = 1;
 
   for (let count = 2; count < MAX_TUPLE_SIZE + 1; count++) {
+    const ats = [];
+    
     tuple.push(alphabet[count - 1]);
+    tuple_literal.push("_");
     values.push(count);
     sum += count;
-    const ats = [];
+
     for (let index = 0; index < count; index++) {
       const new_tuple = structuredClone(tuple);
       new_tuple[index] = "mapped";
 
-      const new_erl_tuple = structuredClone(tuple);
-      new_erl_tuple[index] = `FN(${tuple[index]})`;
+      let tuple_literal_local = structuredClone(tuple_literal);
+      tuple_literal_local[index] = tuple[index];
 
       const mapped_values = structuredClone(values);
       mapped_values[index] = mapped_values[index] * -1;
@@ -45,7 +49,6 @@ function get_mappers_and_applys() {
       const not_last = !(count == MAX_TUPLE_SIZE && index == count - 1);
 
       ats.push({
-        count,
         index,
         not_last,
       });
@@ -55,10 +58,8 @@ function get_mappers_and_applys() {
         index: index,
         type: tuple[index],
         tuple: `#(${tuple.join(", ")})`,
+        tuple_literal: `#(${tuple_literal_local.join(", ")})`,
         new_tuple: `#(${new_tuple.join(", ")})`,
-        erl_tuple: `{${tuple.join(", ")}}`.toUpperCase(),
-        new_erl_tuple: `{${new_erl_tuple.join(", ")}}`.toUpperCase(),
-        not_last: !(count == MAX_TUPLE_SIZE && index == count - 1),
         values: `#(${values.join(", ")})`,
         value: index + 1,
         mapped_values: `#(${mapped_values.join(", ")})`,
@@ -81,37 +82,14 @@ function get_mappers_and_applys() {
   return [mappers, applys];
 }
 
-function get_indexers() {
-  const indexers = [];
-  for (let count = 0; count < MAX_TUPLE_SIZE; count++) {
-    indexers.push({
-      zero_indexed: count,
-      one_indexed: count + 1,
-      not_last: count < MAX_TUPLE_SIZE - 1,
-    });
-  }
-
-  return indexers;
-}
-
 if (import.meta.main) {
   const [mappers, applys] = get_mappers_and_applys();
-  const indexers = get_indexers();
 
-  render("./gen/templates/tuple_ffi.erl.tpl", "./src/tuple_ffi.erl", {
-    mappers,
-    indexers,
-    applys,
-  });
   render(
     "./gen/templates/gxyz_tuple.gleam.tpl",
     "./src/gxyz/gxyz_tuple.gleam",
     { mappers, applys },
   );
-  render("./gen/templates/tuple_ffi.mjs.tpl", "./src/tuple_ffi.mjs", {
-    indexers,
-    applys,
-  });
 
   render("./gen/templates/tuple_test.gleam.tpl", "./test/tuple_test.gleam", {
     mappers,
