@@ -30,7 +30,7 @@ function get_mappers_and_applys() {
 
   for (let count = 2; count < MAX_TUPLE_SIZE + 1; count++) {
     const ats = [];
-    
+
     tuple.push(alphabet[count - 1]);
     tuple_literal.push("_");
     values.push(count);
@@ -88,7 +88,10 @@ if (import.meta.main) {
   render(
     "./gen/templates/gxyz_tuple.gleam.tpl",
     "./src/gxyz/gxyz_tuple.gleam",
-    { mappers, applys },
+    {
+      mappers,
+      applys,
+    },
   );
 
   render("./gen/templates/tuple_test.gleam.tpl", "./test/tuple_test.gleam", {
