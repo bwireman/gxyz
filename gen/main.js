@@ -1,5 +1,6 @@
 import Mustache from "mustache";
 const MAX_TUPLE_SIZE = 5;
+const MAX_FREEZE_SIZE = 5;
 const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
 async function render(src, dst, data) {
@@ -82,20 +83,62 @@ function get_mappers_and_applys() {
   return [mappers, applys];
 }
 
-if (import.meta.main) {
-  const [mappers, applys] = get_mappers_and_applys();
+function get_freezes() {
+  const freezes = [];
+  const args = [];
+  const elems = [];
+  let sum = 1;
 
+  for (let count = 1; count < MAX_FREEZE_SIZE + 1; count++) {
+    sum += count;
+    args.push(alphabet[count - 1]);
+    const new_args = structuredClone(args);
+
+    elems.push(count);
+    const new_elems = structuredClone(elems);
+
+    freezes.push({
+      arity: count,
+      args: new_args,
+      type: alphabet[count],
+      sum: sum,
+      elems: new_elems,
+      math: args.join(" + "),
+    });
+  }
+
+  return freezes;
+}
+
+if (import.meta.main) {
+  const [tupleMappers, tupleApplys] = get_mappers_and_applys();
+  const functionFreezes = get_freezes();
+
+  // tuples
   render(
     "./gen/templates/gxyz_tuple.gleam.tpl",
     "./src/gxyz/gxyz_tuple.gleam",
     {
-      mappers,
-      applys,
+      mappers: tupleMappers,
+      applys: tupleApplys,
     },
   );
 
   render("./gen/templates/tuple_test.gleam.tpl", "./test/tuple_test.gleam", {
-    mappers,
-    applys,
+    mappers: tupleMappers,
+    applys: tupleApplys,
   });
+
+  // functions
+  render(
+    "./gen/templates/gxyz_function.gleam.tpl",
+    "./src/gxyz/gxyz_function.gleam",
+    { freezes: functionFreezes },
+  );
+
+  render(
+    "./gen/templates/function_test.gleam.tpl",
+    "./test/function_test.gleam",
+    { freezes: functionFreezes },
+  );
 }

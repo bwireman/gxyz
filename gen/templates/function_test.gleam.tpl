@@ -7,37 +7,13 @@ pub fn freeze_test() {
   |> should.equal(1)
 }
 
-pub fn freeze1_test() {
-  gxyz_function.freeze1(fn(a) { a + 1 }, 1)()
-  |> should.equal(2)
+{{#freezes}}
+pub fn freeze{{arity}}_test() {
+  gxyz_function.freeze{{arity}}(fn({{args}}) { {{math}} + 1 }, {{elems}})()
+  |> should.equal({{sum}})
 }
 
-pub fn freeze2_test() {
-  gxyz_function.freeze2(fn(a, b) { a + b + 1 }, 1, 2)()
-  |> should.equal(4)
-}
-
-pub fn freeze3_test() {
-  gxyz_function.freeze3(fn(a, b, c) { a + b + c + 1 }, 1, 2, 3)()
-  |> should.equal(7)
-}
-
-pub fn freeze4_test() {
-  gxyz_function.freeze4(fn(a, b, c, d) { a + b + c + d + 1 }, 1, 2, 3, 4)()
-  |> should.equal(11)
-}
-
-pub fn freeze5_test() {
-  gxyz_function.freeze5(
-    fn(a, b, c, d, e) { a + b + c + d + e + 1 },
-    1,
-    2,
-    3,
-    4,
-    5,
-  )()
-  |> should.equal(16)
-}
+{{/freezes}}
 
 pub fn iff_test() {
   let one = gxyz_function.freeze(1)
