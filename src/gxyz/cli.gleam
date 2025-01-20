@@ -2,17 +2,17 @@ import gleam/io
 import gleam/option.{type Option}
 import gleam/string
 import gleave
-import gxyz/gxyz_list
+import gxyz/list
 
 /// strip js/ts files from argv (often present in node and deno implementation)
 pub fn strip_js_from_argv(args: List(String)) -> List(String) {
   args
-  |> gxyz_list.reject(string.ends_with(_, ".js"))
-  |> gxyz_list.reject(string.ends_with(_, ".mjs"))
-  |> gxyz_list.reject(string.ends_with(_, ".cjs"))
-  |> gxyz_list.reject(string.ends_with(_, ".ts"))
-  |> gxyz_list.reject(string.ends_with(_, ".mts"))
-  |> gxyz_list.reject(string.ends_with(_, ".cts"))
+  |> list.reject(string.ends_with(_, ".js"))
+  |> list.reject(string.ends_with(_, ".mjs"))
+  |> list.reject(string.ends_with(_, ".cjs"))
+  |> list.reject(string.ends_with(_, ".ts"))
+  |> list.reject(string.ends_with(_, ".mts"))
+  |> list.reject(string.ends_with(_, ".cts"))
 }
 
 fn do_hard_fail(

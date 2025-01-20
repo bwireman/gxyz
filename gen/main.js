@@ -116,8 +116,8 @@ if (import.meta.main) {
 
   // tuples
   render(
-    "./gen/templates/gxyz_tuple.gleam.tpl",
-    "./src/gxyz/gxyz_tuple.gleam",
+    "./gen/templates/tuple.gleam.tpl",
+    "./src/gxyz/tuple.gleam",
     {
       mappers: tupleMappers,
       applys: tupleApplys,
@@ -131,8 +131,8 @@ if (import.meta.main) {
 
   // functions
   render(
-    "./gen/templates/gxyz_function.gleam.tpl",
-    "./src/gxyz/gxyz_function.gleam",
+    "./gen/templates/function.gleam.tpl",
+    "./src/gxyz/function.gleam",
     { freezes: functionFreezes },
   );
 
