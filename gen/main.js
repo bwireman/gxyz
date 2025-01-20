@@ -10,22 +10,22 @@ async function render(src, dst, data) {
 }
 
 function get_suffix(index) {
-  let suffix = "th";
   if (index == 0) {
-    suffix = "st";
+    return "st";
   } else if (index == 1) {
-    suffix = "nd";
+    return "nd";
   } else if (index == 2) {
-    suffix = "rd";
+    return "rd";
   }
-  return suffix;
+
+  return "th";
 }
 
-function get_mappers_and_applys() {
+function getMappersAndApplys() {
   const mappers = [];
   const applys = [];
   const tuple = ["a"];
-  const tuple_literal = ["_"];
+  const tupleLiteral = ["_"];
   const values = [1];
   let sum = 1;
 
@@ -33,19 +33,19 @@ function get_mappers_and_applys() {
     const ats = [];
 
     tuple.push(alphabet[count - 1]);
-    tuple_literal.push("_");
+    tupleLiteral.push("_");
     values.push(count);
     sum += count;
 
     for (let index = 0; index < count; index++) {
-      const new_tuple = structuredClone(tuple);
-      new_tuple[index] = "mapped";
+      const newTuple = structuredClone(tuple);
+      newTuple[index] = "mapped";
 
-      let tuple_literal_local = structuredClone(tuple_literal);
-      tuple_literal_local[index] = tuple[index];
+      let tupleLiteralLocal = structuredClone(tupleLiteral);
+      tupleLiteralLocal[index] = tuple[index];
 
-      const mapped_values = structuredClone(values);
-      mapped_values[index] = mapped_values[index] * -1;
+      const mappedValues = structuredClone(values);
+      mappedValues[index] = mappedValues[index] * -1;
 
       const not_last = !(count == MAX_TUPLE_SIZE && index == count - 1);
 
@@ -59,11 +59,11 @@ function get_mappers_and_applys() {
         index: index,
         type: tuple[index],
         tuple: `#(${tuple.join(", ")})`,
-        tuple_literal: `#(${tuple_literal_local.join(", ")})`,
-        new_tuple: `#(${new_tuple.join(", ")})`,
+        tupleLiteral: `#(${tupleLiteralLocal.join(", ")})`,
+        new_tuple: `#(${newTuple.join(", ")})`,
         values: `#(${values.join(", ")})`,
         value: index + 1,
-        mapped_values: `#(${mapped_values.join(", ")})`,
+        mappedValues: `#(${mappedValues.join(", ")})`,
         index_name: `${index + 1}${get_suffix(index)}`,
       });
     }
@@ -83,7 +83,7 @@ function get_mappers_and_applys() {
   return [mappers, applys];
 }
 
-function get_freezes() {
+function getFreezes() {
   const freezes = [];
   const args = [];
   const elems = [];
@@ -92,18 +92,18 @@ function get_freezes() {
   for (let count = 1; count < MAX_FREEZE_SIZE + 1; count++) {
     sum += count;
     args.push(alphabet[count - 1]);
-    const new_args = structuredClone(args);
+    const local_args = structuredClone(args);
 
     elems.push(count);
-    const new_elems = structuredClone(elems);
+    const local_elems = structuredClone(elems);
 
     freezes.push({
       arity: count,
-      args: new_args,
+      args: local_args,
       type: alphabet[count],
       sum: sum,
-      elems: new_elems,
-      math: args.join(" + "),
+      elems: local_elems,
+      math: local_args.join(" + "),
     });
   }
 
@@ -111,8 +111,8 @@ function get_freezes() {
 }
 
 if (import.meta.main) {
-  const [tupleMappers, tupleApplys] = get_mappers_and_applys();
-  const functionFreezes = get_freezes();
+  const [tupleMappers, tupleApplys] = getMappersAndApplys();
+  const functionFreezes = getFreezes();
 
   // tuples
   render(

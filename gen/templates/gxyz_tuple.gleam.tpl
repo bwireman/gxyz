@@ -13,7 +13,7 @@ pub fn at_dynamic(
 {{#mappers}}
 /// returns the {{index_name}} element of a tuple of length {{count}}
 pub fn at{{count}}_{{index}}(tuple: {{tuple}}) -> {{type}} {
-  let {{tuple_literal}} = tuple
+  let {{tupleLiteral}} = tuple
   {{type}}
 }
 

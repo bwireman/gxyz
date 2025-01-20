@@ -46,7 +46,7 @@ pub fn at{{count}}_{{index}}_test() {
 pub fn map{{count}}_{{index}}_test() {
   {{values}}
   |> gxyz_tuple.map{{count}}_{{index}}(invert)
-  |> should.equal({{mapped_values}})
+  |> should.equal({{mappedValues}})
 }
 {{/mappers}}
 
