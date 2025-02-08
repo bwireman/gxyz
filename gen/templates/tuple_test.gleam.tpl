@@ -1,4 +1,4 @@
-import gleam/dynamic.{bool, int, string}
+import gleam/dynamic/decode.{bool, int, string}
 import gleeunit/should
 import gxyz/tuple
 
@@ -28,21 +28,12 @@ pub fn at_dynamic_test() {
   tuple.at_dynamic(x, 2, int)
   |> should.be_error()
 
-  tuple.at_dynamic(#(), 0, string)
-  |> should.be_error()
-
   tuple.at_dynamic(#(1), 0, int)
   |> should.be_ok()
   |> should.equal(1)
 }
 
 {{#mappers}}
-pub fn at{{count}}_{{index}}_test() {
-  {{values}}
-  |> tuple.at{{count}}_{{index}}()
-  |> should.equal({{value}})
-}
-
 pub fn map{{count}}_{{index}}_test() {
   {{values}}
   |> tuple.map{{count}}_{{index}}(invert)

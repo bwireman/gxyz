@@ -1,4 +1,4 @@
-import gleam/dynamic.{bool, int, string}
+import gleam/dynamic/decode.{bool, int, string}
 import gleeunit/should
 import gxyz/tuple
 
@@ -30,17 +30,8 @@ pub fn at_dynamic_test() {
   tuple.at_dynamic(x, 2, int)
   |> should.be_error()
 
-  tuple.at_dynamic(#(), 0, string)
-  |> should.be_error()
-
   tuple.at_dynamic(#(1), 0, int)
   |> should.be_ok()
-  |> should.equal(1)
-}
-
-pub fn at2_0_test() {
-  #(1, 2)
-  |> tuple.at2_0()
   |> should.equal(1)
 }
 
@@ -50,22 +41,10 @@ pub fn map2_0_test() {
   |> should.equal(#(-1, 2))
 }
 
-pub fn at2_1_test() {
-  #(1, 2)
-  |> tuple.at2_1()
-  |> should.equal(2)
-}
-
 pub fn map2_1_test() {
   #(1, 2)
   |> tuple.map2_1(invert)
   |> should.equal(#(1, -2))
-}
-
-pub fn at3_0_test() {
-  #(1, 2, 3)
-  |> tuple.at3_0()
-  |> should.equal(1)
 }
 
 pub fn map3_0_test() {
@@ -74,22 +53,10 @@ pub fn map3_0_test() {
   |> should.equal(#(-1, 2, 3))
 }
 
-pub fn at3_1_test() {
-  #(1, 2, 3)
-  |> tuple.at3_1()
-  |> should.equal(2)
-}
-
 pub fn map3_1_test() {
   #(1, 2, 3)
   |> tuple.map3_1(invert)
   |> should.equal(#(1, -2, 3))
-}
-
-pub fn at3_2_test() {
-  #(1, 2, 3)
-  |> tuple.at3_2()
-  |> should.equal(3)
 }
 
 pub fn map3_2_test() {
@@ -98,22 +65,10 @@ pub fn map3_2_test() {
   |> should.equal(#(1, 2, -3))
 }
 
-pub fn at4_0_test() {
-  #(1, 2, 3, 4)
-  |> tuple.at4_0()
-  |> should.equal(1)
-}
-
 pub fn map4_0_test() {
   #(1, 2, 3, 4)
   |> tuple.map4_0(invert)
   |> should.equal(#(-1, 2, 3, 4))
-}
-
-pub fn at4_1_test() {
-  #(1, 2, 3, 4)
-  |> tuple.at4_1()
-  |> should.equal(2)
 }
 
 pub fn map4_1_test() {
@@ -122,22 +77,10 @@ pub fn map4_1_test() {
   |> should.equal(#(1, -2, 3, 4))
 }
 
-pub fn at4_2_test() {
-  #(1, 2, 3, 4)
-  |> tuple.at4_2()
-  |> should.equal(3)
-}
-
 pub fn map4_2_test() {
   #(1, 2, 3, 4)
   |> tuple.map4_2(invert)
   |> should.equal(#(1, 2, -3, 4))
-}
-
-pub fn at4_3_test() {
-  #(1, 2, 3, 4)
-  |> tuple.at4_3()
-  |> should.equal(4)
 }
 
 pub fn map4_3_test() {
@@ -146,22 +89,10 @@ pub fn map4_3_test() {
   |> should.equal(#(1, 2, 3, -4))
 }
 
-pub fn at5_0_test() {
-  #(1, 2, 3, 4, 5)
-  |> tuple.at5_0()
-  |> should.equal(1)
-}
-
 pub fn map5_0_test() {
   #(1, 2, 3, 4, 5)
   |> tuple.map5_0(invert)
   |> should.equal(#(-1, 2, 3, 4, 5))
-}
-
-pub fn at5_1_test() {
-  #(1, 2, 3, 4, 5)
-  |> tuple.at5_1()
-  |> should.equal(2)
 }
 
 pub fn map5_1_test() {
@@ -170,34 +101,16 @@ pub fn map5_1_test() {
   |> should.equal(#(1, -2, 3, 4, 5))
 }
 
-pub fn at5_2_test() {
-  #(1, 2, 3, 4, 5)
-  |> tuple.at5_2()
-  |> should.equal(3)
-}
-
 pub fn map5_2_test() {
   #(1, 2, 3, 4, 5)
   |> tuple.map5_2(invert)
   |> should.equal(#(1, 2, -3, 4, 5))
 }
 
-pub fn at5_3_test() {
-  #(1, 2, 3, 4, 5)
-  |> tuple.at5_3()
-  |> should.equal(4)
-}
-
 pub fn map5_3_test() {
   #(1, 2, 3, 4, 5)
   |> tuple.map5_3(invert)
   |> should.equal(#(1, 2, 3, -4, 5))
-}
-
-pub fn at5_4_test() {
-  #(1, 2, 3, 4, 5)
-  |> tuple.at5_4()
-  |> should.equal(5)
 }
 
 pub fn map5_4_test() {

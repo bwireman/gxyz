@@ -29,7 +29,7 @@ function publish {
     git tag "$VER"
     git push origin "$VER"
     echo "Publishing to Hex" "$VER"
-    HEX_API_KEY=$(cat key._) gleam publish
+    gleam publish
     echo "🚀"
 }
 

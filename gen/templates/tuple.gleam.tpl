@@ -1,22 +1,23 @@
-import gleam/dynamic.{type DecodeError, type Dynamic, element, from}
+import gleam/dynamic
+import gleam/dynamic/decode
+
+@external(erlang, "erlang", "element")
+@external(javascript, "./ffi.mjs", "element")
+fn element(index: Int, tuple: decode.Dynamic) -> decode.Dynamic
 
 /// returns the value at index from the a tuple, using a dynamic.Decode function
 pub fn at_dynamic(
   tuple: a,
   index: Int,
-  fun: fn(Dynamic) -> Result(b, List(DecodeError)),
-) -> Result(b, List(DecodeError)) {
-  from(tuple)
-  |> element(index, fun)
+  decoder: decode.Decoder(b),
+) -> Result(b, List(decode.DecodeError)) {
+  tuple
+  |> dynamic.from()
+  |> element(index + 1, _)
+  |> decode.run(decoder)
 }
 
 {{#mappers}}
-/// returns the {{index_name}} element of a tuple of length {{count}}
-pub fn at{{count}}_{{index}}(tuple: {{tuple}}) -> {{type}} {
-  let {{tupleLiteral}} = tuple
-  {{type}}
-}
-
 /// applies the function to the {{index_name}} element of a tuple of length {{count}}
 pub fn map{{count}}_{{index}}(tuple: {{tuple}}, fun: fn({{type}}) -> mapped) -> {{new_tuple}} {
   let {{tuple}} = tuple
@@ -30,7 +31,7 @@ pub fn map{{count}}_{{index}}(tuple: {{tuple}}, fun: fn({{type}}) -> mapped) -> 
 pub fn apply_from{{count}}(tuple: {{tuple}}, fun: fn({{args}}) -> {{type}}) -> {{type}} {
   fun(
     {{#ats}}
-      at{{count}}_{{index}}(tuple){{#not_last}},{{/not_last}}
+      tuple.{{index}}{{#not_last}},{{/not_last}}
     {{/ats}}
   )
 }
