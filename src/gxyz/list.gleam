@@ -17,6 +17,32 @@ pub fn reject_contains(l: List(a), filter: List(a)) -> List(a) {
   reject(l, list.contains(filter, _))
 }
 
+pub fn filter_tap(l: List(a), tap: fn(a) -> b, filter: fn(b) -> Bool) -> List(a) {
+  list.map(l, fn(original) { #(original, tap(original)) })
+  |> list.filter(fn(elem) { filter(elem.1) })
+  |> list.map(fn(elem) { elem.0 })
+}
+
+pub fn reject_tap(l: List(a), tap: fn(a) -> b, filter: fn(b) -> Bool) -> List(a) {
+  filter_tap(l, tap, fn(b) { !filter(b) })
+}
+
+pub fn filter_contains_tap(
+  l: List(a),
+  tap: fn(a) -> b,
+  contains: List(b),
+) -> List(a) {
+  filter_tap(l, tap, list.contains(contains, _))
+}
+
+pub fn reject_contains_tap(
+  l: List(a),
+  tap: fn(a) -> b,
+  contains: List(b),
+) -> List(a) {
+  reject_tap(l, tap, list.contains(contains, _))
+}
+
 /// removes elements from the list if the predicate returns True
 pub fn reject(l: List(a), rejecting: fn(a) -> Bool) -> List(a) {
   list.filter(l, fn(a) { !rejecting(a) })
