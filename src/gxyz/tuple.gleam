@@ -1,9 +1,8 @@
-import gleam/dynamic
 import gleam/dynamic/decode
 
 @external(erlang, "erlang", "element")
 @external(javascript, "./../ffi.mjs", "element")
-fn element(index: Int, tuple: decode.Dynamic) -> decode.Dynamic
+fn element(index: Int, tuple: a) -> decode.Dynamic
 
 /// returns the value at index from the a tuple, using a dynamic.Decode function
 pub fn at_dynamic(
@@ -12,7 +11,6 @@ pub fn at_dynamic(
   decoder: decode.Decoder(b),
 ) -> Result(b, List(decode.DecodeError)) {
   tuple
-  |> dynamic.from()
   |> element(index + 1, _)
   |> decode.run(decoder)
 }

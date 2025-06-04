@@ -7,8 +7,8 @@ on:
   pull_request:
 
 env:
-  otp: "27.0"
-  gleam: "1.9.1"
+  otp: "28.0"
+  gleam: "1.11.0"
   rebar: "3"
   nodelts: 22.x
 
