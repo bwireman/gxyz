@@ -5,6 +5,7 @@ cd "$(dirname "$0")/.."
 GREEN='\033[0;32m'
 NC='\033[0m'
 
+deno update
 deno run -WR ./gen/main.js
 deno fmt
 gleam fix
