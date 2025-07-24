@@ -20,9 +20,13 @@ pub fn hard_exit_happy_path_test() {
   |> cli.hard_fail_with_msg("foo")
   |> should.equal(True)
 
-  Ok("test")
-  |> cli.hard_fail_with_opts("bar", 2)
-  |> should.equal("test")
+  Ok("foo")
+  |> cli.custom_hard_fail([
+    cli.FailOptEcho,
+    cli.FailOptExitCode(2),
+    cli.FailOptMessage("bummer"),
+  ])
+  |> should.equal("foo")
 
   Ok(1)
   |> cli.hard_fail()
