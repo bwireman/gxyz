@@ -23,6 +23,12 @@ pub fn ignore_result(condition: Bool, f: fn() -> Result(a, b)) -> Nil {
 }
 
 /// freezes a value as an arity 0 function
+/// freezes a value as an arity 0 function
+/// ```
+///: let x = function.freeze(1)
+///: assert x() == 1
+///: assert x() == 1
+/// ```
 pub fn freeze(value: a) -> fn() -> a {
   fn() { value }
 }

@@ -1,5 +1,6 @@
 import gleeunit
+import testament
 
 pub fn main() {
-  gleeunit.main()
+  testament.test_main(gleeunit.main)
 }

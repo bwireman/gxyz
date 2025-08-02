@@ -30,6 +30,9 @@ pub fn at_dynamic_test() {
   tuple.at_dynamic(x, 2, int)
   |> should.be_error()
 
+  tuple.at_dynamic(x, 200, int)
+  |> should.be_error()
+
   tuple.at_dynamic(#(1), 0, int)
   |> should.be_ok()
   |> should.equal(1)
