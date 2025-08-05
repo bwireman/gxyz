@@ -1,4 +1,4 @@
--module(ffi).
+-module(gxyz_ffi).
 
 -export([
     do_element/2

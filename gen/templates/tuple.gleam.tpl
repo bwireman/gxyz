@@ -1,8 +1,8 @@
 import gleam/dynamic/decode
 import gleam/result
 
-@external(erlang, "ffi", "do_element")
-@external(javascript, "./../ffi.mjs", "element")
+@external(erlang, "gxyz_ffi", "do_element")
+@external(javascript, "./../gxyz_ffi.mjs", "element")
 fn element(index: Int, tuple: a) -> Result(decode.Dynamic, Nil)
 
 /// returns the value at index from the a tuple, using a dynamic.Decode function
@@ -13,6 +13,8 @@ fn element(index: Int, tuple: a) -> Result(decode.Dynamic, Nil)
 ///: let assert Ok("foo") = tuple.at_dynamic(x, 1, string) 
 ///: let assert Error(_) = tuple.at_dynamic(x, 1, int)
 ///: let assert Error(_) = tuple.at_dynamic(x, 10, int)
+///: let assert Error(_) = tuple.at_dynamic(123, 10, int)
+///: let assert Error(_) = tuple.at_dynamic("not a tuple", 10, int)
 /// ```
 pub fn at_dynamic(
   tuple: a,
