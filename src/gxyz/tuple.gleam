@@ -7,7 +7,6 @@ fn element(index: Int, tuple: a) -> Result(decode.Dynamic, Nil)
 
 /// returns the value at index from the a tuple, using a dynamic.Decode function
 /// ```
-///: import gleam/dynamic/decode.{int, string}
 ///: let x = #(1, "foo")
 ///: let assert Ok(1) = tuple.at_dynamic(x, 0, int)
 ///: let assert Ok("foo") = tuple.at_dynamic(x, 1, string) 

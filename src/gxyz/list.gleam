@@ -53,8 +53,6 @@ pub fn reject_contains(l: List(a), filter: List(a)) -> List(a) {
 
 /// returns elements where the tapped value satisfies the predicate
 /// ```
-///: import gleam/pair
-///: import gleam/string
 ///: let vals = [#(0, "Aa"), #(1, "Bb"), #(2, "Cc")]
 ///: assert list.filter_tap(vals, pair.first, fn(v) { v % 2 == 0  }) == [#(0, "Aa"), #(2, "Cc")]
 ///: assert list.filter_tap(vals, pair.second, string.starts_with(_, "A")) == [#(0, "Aa")]
@@ -67,8 +65,6 @@ pub fn filter_tap(l: List(a), tap: fn(a) -> b, filter: fn(b) -> Bool) -> List(a)
 
 /// returns elements where the tapped value does not satisfy the predicate
 /// ```
-///: import gleam/pair
-///: import gleam/string
 ///: let vals = [#(0, "Aa"), #(1, "Bb"), #(2, "Cc")]
 ///: assert list.reject_tap(vals, pair.first, fn(v) { v % 2 == 0  }) == [#(1, "Bb")]
 ///: assert list.reject_tap(vals, pair.second, string.starts_with(_, "A")) == [#(1, "Bb"), #(2, "Cc")]
@@ -79,7 +75,6 @@ pub fn reject_tap(l: List(a), tap: fn(a) -> b, filter: fn(b) -> Bool) -> List(a)
 
 /// returns elements where the tapped value exists in the list
 /// ```
-///: import gleam/pair
 ///: let vals = [#(0, "Aa"), #(1, "Bb"), #(2, "Cc")]
 ///: assert list.filter_contains_tap(vals, pair.first, [0, 1]) == [#(0, "Aa"), #(1, "Bb")]
 ///: assert list.filter_contains_tap(vals, pair.first, [3]) == []
@@ -94,7 +89,6 @@ pub fn filter_contains_tap(
 
 /// returns elements where the tapped value does not exist in the list
 /// ```
-///: import gleam/pair
 ///: let vals = [#(0, "Aa"), #(1, "Bb"), #(2, "Cc")]
 ///: assert list.reject_contains_tap(vals, pair.first, [0, 1]) == [#(2, "Cc")]
 ///: assert list.reject_contains_tap(vals, pair.first, [3]) == vals
