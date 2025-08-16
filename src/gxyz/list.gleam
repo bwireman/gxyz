@@ -4,8 +4,8 @@ import gleam/pair
 /// removes elements from the list that don't satisfy the predicate
 /// ```
 ///: let nums = [1, 2, 3, 2, 1]
-///: assert list.reject(nums, fn(n) {n % 2 == 0} ) == [1, 3, 1]
-///: assert list.reject(nums, fn(n) {n % 2 == 1} ) == [2, 2]
+///: assert list.reject(nums, int.is_even) == [1, 3, 1]
+///: assert list.reject(nums, int.is_odd) == [2, 2]
 ///  ```
 pub fn reject(l: List(a), rejecting: fn(a) -> Bool) -> List(a) {
   list.filter(l, fn(a) { !rejecting(a) })
@@ -54,7 +54,7 @@ pub fn reject_contains(l: List(a), filter: List(a)) -> List(a) {
 /// returns elements where the tapped value satisfies the predicate
 /// ```
 ///: let vals = [#(0, "Aa"), #(1, "Bb"), #(2, "Cc")]
-///: assert list.filter_tap(vals, pair.first, fn(v) { v % 2 == 0  }) == [#(0, "Aa"), #(2, "Cc")]
+///: assert list.filter_tap(vals, pair.first, int.is_even) == [#(0, "Aa"), #(2, "Cc")]
 ///: assert list.filter_tap(vals, pair.second, string.starts_with(_, "A")) == [#(0, "Aa")]
 /// ```
 pub fn filter_tap(l: List(a), tap: fn(a) -> b, filter: fn(b) -> Bool) -> List(a) {
@@ -66,7 +66,7 @@ pub fn filter_tap(l: List(a), tap: fn(a) -> b, filter: fn(b) -> Bool) -> List(a)
 /// returns elements where the tapped value does not satisfy the predicate
 /// ```
 ///: let vals = [#(0, "Aa"), #(1, "Bb"), #(2, "Cc")]
-///: assert list.reject_tap(vals, pair.first, fn(v) { v % 2 == 0  }) == [#(1, "Bb")]
+///: assert list.reject_tap(vals, pair.first, int.is_even) == [#(1, "Bb")]
 ///: assert list.reject_tap(vals, pair.second, string.starts_with(_, "A")) == [#(1, "Bb"), #(2, "Cc")]
 /// ```
 pub fn reject_tap(l: List(a), tap: fn(a) -> b, filter: fn(b) -> Bool) -> List(a) {
