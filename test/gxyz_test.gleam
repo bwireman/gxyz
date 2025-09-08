@@ -5,12 +5,12 @@ import testament/conf
 pub fn main() {
   testament.test_main_with_opts(gleeunit.main, [
     conf.ExtraImports("src/gxyz/list.gleam", [
-      "gleam/pair",
-      "gleam/string",
-      "gleam/int",
+      conf.Import("gleam/pair", ["first", "second"]),
+      conf.Import("gleam/string", ["starts_with"]),
+      conf.Import("gleam/int", ["is_even", "is_odd"]),
     ]),
     conf.ExtraImports("src/gxyz/tuple.gleam", [
-      "gleam/dynamic/decode.{int, string}",
+      conf.Import("gleam/dynamic/decode", ["int", "string"]),
     ]),
   ])
 }
